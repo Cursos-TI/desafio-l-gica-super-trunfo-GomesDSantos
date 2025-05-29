@@ -4,8 +4,11 @@ int main() {
 
     printf("=====SUPER TRUNFO=====\n"); //INICIO DO PROGRAMA
 
-    //CORPO DAS CARTAS 1 E 2
-    char estado[1];
+    //CORPO DAS CARTAS 1,2 E MENU
+
+    int escolha, escolha2,resultado,resultado2; //VARIAVEIS DE MENU
+
+    char estado[2];
     char codigoCarta[3];
     char nomeCidade[20];
     unsigned long int populacao;
@@ -13,7 +16,7 @@ int main() {
     float pib, areaCidade, pibPerCapta, densidadePop;
     float superPoder = populacao + pontosTuristicos + pib + areaCidade + pibPerCapta + densidadePop;
 
-    char estado2[1];
+    char estado2[2];
     char codigoCarta2[3];
     char nomeCidade2[20];
     unsigned long int populacao2;
@@ -95,11 +98,20 @@ int main() {
 
     //MENU DE COMPARAÇÃO DAS CARTAS
     printf("\n");
-    printf("=====MENU DE ESCOLHA=====\n");
+    printf("===========MENU DE ESCOLHA===========\n");
+    printf("=QUAIS ATRIBUTOS VAO SER COMPARADOS?=\n\n");
+    printf("=PRIMEIRA OPCAO=\n");
     printf("1.POPULACAO\n2.AREA\n3.PIB\n4.PONTOS TURISTICOS\n5.DENSIDADE DEMOGRAFICA\n");
-    int escolha,resultado;
     scanf("%i",&escolha);
+    printf("=SEGUNDA OPCAO=\n");
+    printf("1.POPULACAO\n2.AREA\n3.PIB\n4.PONTOS TURISTICOS\n5.DENSIDADE DEMOGRAFICA\n");
+    scanf("%i",&escolha2);
     printf("\n");
+
+    while (escolha2 == escolha) { //CASO O JOGADOR ESCOLHA A MESMA OPÇÃO DE COMPARAÇÃO
+        printf("SELECIONE DUAS OPCOES DIFERENTES");
+        scanf("%i", escolha2);
+    }
 
     //COMPARAÇÃO DAS CARTAS
     switch (escolha) {
@@ -108,13 +120,8 @@ int main() {
             printf("Carta 1 - %s = %lu\n", nomeCidade, populacao);
             printf("Carta 2 - %s = %lu\n", nomeCidade2, populacao2);
 
-            if (populacao > populacao2) {
-                resultado = 1;
-            }
-            else if (populacao < populacao2) {
-                resultado = 2;
-            }
-            else {
+            resultado = populacao > populacao2 ? 1 : 2;
+            if (populacao == populacao2) {
                 resultado = 3;
             }
         break;
@@ -123,60 +130,95 @@ int main() {
             printf("Carta 1 - %s = %f\n", nomeCidade, areaCidade);
             printf("Carta 2 - %s = %f\n", nomeCidade2, areaCidade2);
 
-            if (areaCidade > areaCidade2) {
-                resultado = 1;
-            }
-            else if (areaCidade < areaCidade2) {
-                resultado = 2;
-            }
-            else {
-                resultado = 3;
-            }
+        resultado = areaCidade > areaCidade2 ? 1 : 2;
+        if (areaCidade == areaCidade2) {
+            resultado = 3;
+        }
         break;
         case 3: //CASO O PIB SEJA COMPARADO
             printf("ATRIBUTO SENDO COMPARADO: PIB\n");
             printf("Carta 1 - %s = %f\n", nomeCidade, pib);
             printf("Carta 2 - %s = %f\n", nomeCidade2, pib2);
 
-            if (pib > pib2) {
-                resultado = 1;
-            }
-            else if (pib < pib2) {
-                resultado = 2;
-            }
-            else {
-                resultado = 3;
-            }
+        resultado = pib > pib2 ? 1 : 2;
+        if (pib == pib2) {
+            resultado = 3;
+        }
         break;
         case 4: //CASO OS PONTOS TURISTICOS SEJAM COMPARADOS
             printf("ATRIBUTO SENDO COMPARADO: PONTOS TURISTICOS\n");
             printf("Carta 1 - %s = %i\n", nomeCidade, pontosTuristicos);
             printf("Carta 2 - %s = %i\n", nomeCidade2, pontosTuristicos2);
 
-            if (pontosTuristicos > pontosTuristicos2) {
-                resultado = 1;
-            }
-            else if (pontosTuristicos < pontosTuristicos2) {
-                resultado = 2;
-            }
-            else {
-                resultado = 3;
-            }
+        resultado = pontosTuristicos > pontosTuristicos2 ? 1 : 2;
+        if (pontosTuristicos == pontosTuristicos2) {
+            resultado = 3;
+        }
         break;
         case 5: //CASO A DENSIDADE POPULACIONAL SEJA COMPARADA
             printf("ATRIBUTO SENDO COMPARADO: DENSIDADE POPULACIONAL\n");
             printf("Carta 1 - %s = %f\n", nomeCidade, densidadePop);
             printf("Carta 2 - %s = %f\n", nomeCidade2, densidadePop2);
 
-            if (densidadePop < densidadePop2) {
-                resultado = 1;
+        resultado = densidadePop > densidadePop2 ? 1 : 2;
+        if (densidadePop == densidadePop2) {
+            resultado = 3;
+        }
+        break;
+        default: //CASO NÃO SEJA ESCOLHIDO UM NUMERO DO MENU
+            printf("Essa nao e uma opcao valida\n");
+    }
+    //SEGUNDA OPCAO DE COMPARACAO
+    switch (escolha2) {
+        case 1: //CASO A POPULAÇÃO SEJA COMPARADA
+            printf("ATRIBUTO SENDO COMPARADO: POPULACAO\n");
+            printf("Carta 1 - %s = %lu\n", nomeCidade, populacao);
+            printf("Carta 2 - %s = %lu\n", nomeCidade2, populacao2);
+
+            resultado2 = populacao > populacao2 ? 1 : 2;
+            if (populacao == populacao2) {
+                resultado2 = 3;
             }
-            else if (densidadePop > densidadePop2) {
-                resultado = 2;
-            }
-            else {
-                resultado = 3;
-            }
+        break;
+        case 2: //CASO A AREA SEJA COMPARADA
+            printf("ATRIBUTO SENDO COMPARADO: AREA DA CIDADE\n");
+            printf("Carta 1 - %s = %f\n", nomeCidade, areaCidade);
+            printf("Carta 2 - %s = %f\n", nomeCidade2, areaCidade2);
+
+        resultado2 = areaCidade > areaCidade2 ? 1 : 2;
+        if (areaCidade == areaCidade2) {
+            resultado2 = 3;
+        }
+        break;
+        case 3: //CASO O PIB SEJA COMPARADO
+            printf("ATRIBUTO SENDO COMPARADO: PIB\n");
+            printf("Carta 1 - %s = %f\n", nomeCidade, pib);
+            printf("Carta 2 - %s = %f\n", nomeCidade2, pib2);
+
+        resultado2 = pib > pib2 ? 1 : 2;
+        if (pib == pib2) {
+            resultado2 = 3;
+        }
+        break;
+        case 4: //CASO OS PONTOS TURISTICOS SEJAM COMPARADOS
+            printf("ATRIBUTO SENDO COMPARADO: PONTOS TURISTICOS\n");
+            printf("Carta 1 - %s = %i\n", nomeCidade, pontosTuristicos);
+            printf("Carta 2 - %s = %i\n", nomeCidade2, pontosTuristicos2);
+
+        resultado2 = pontosTuristicos > pontosTuristicos2 ? 1 : 2;
+        if (pontosTuristicos == pontosTuristicos2) {
+            resultado2 = 3;
+        }
+        break;
+        case 5: //CASO A DENSIDADE POPULACIONAL SEJA COMPARADA
+            printf("ATRIBUTO SENDO COMPARADO: DENSIDADE POPULACIONAL\n");
+            printf("Carta 1 - %s = %f\n", nomeCidade, densidadePop);
+            printf("Carta 2 - %s = %f\n", nomeCidade2, densidadePop2);
+
+        resultado2 = densidadePop > densidadePop2 ? 1 : 2;
+        if (densidadePop == densidadePop2) {
+            resultado2 = 3;
+        }
         break;
         default: //CASO NÃO SEJA ESCOLHIDO UM NUMERO DO MENU
             printf("Essa nao e uma opcao valida\n");
@@ -184,10 +226,10 @@ int main() {
 
     //APRESENTAÇÃO DO VENCEDOR
     printf("VENCEDOR DA RODADA!\n");
-    if (resultado == 1) {
+    if (resultado && resultado2 == 1) {
         printf("Parabens! A Carta 1 ganhou!");
     }
-    else if (resultado == 2) {
+    else if (resultado && resultado2 == 2) {
         printf("Parabens! A Carta 2 ganhou!");
     }
     else {
